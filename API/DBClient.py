@@ -31,10 +31,10 @@ if __name__ == '__main__':
 
 	client=DBClient()
 	#test for put
-	# testJson=open("testJson.json", 'r')
-	# content=testJson.readlines()[0]
-	# # print content
-	# print client.put(content)
+	testJson=open("../jsonSample.json", 'r')
+	content=testJson.readlines()[0]
+	# print content
+	print client.put(content)
 
 	#test for get
-	print client.get("test")
+	# print client.get("test")

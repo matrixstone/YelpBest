@@ -23,6 +23,7 @@
 		42FD6C6E18DC286B000BF2B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42FD6C6C18DC286B000BF2B9 /* InfoPlist.strings */; };
 		42FD6C7018DC286B000BF2B9 /* YelpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FD6C6F18DC286B000BF2B9 /* YelpTests.m */; };
 		63E591F41F684901AF8C1C19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEC6D18C14F46F8AF2EA320 /* libPods.a */; };
+		8B31D9F81AAD399A006C874F /* MenuClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B31D9F71AAD399A006C874F /* MenuClient.m */; };
 		8BBD55951A7EE89600BF901D /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD55941A7EE89600BF901D /* Business.m */; };
 		8BBD559A1A7EEF9C00BF901D /* BusinessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD55981A7EEF9C00BF901D /* BusinessCell.m */; };
 		8BBD559B1A7EEF9C00BF901D /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD55991A7EEF9C00BF901D /* BusinessCell.xib */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		405C285284D4C066EEBA6511 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		420474F418DC299500E88E07 /* YelpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpClient.h; sourceTree = "<group>"; };
 		420474F518DC299500E88E07 /* YelpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpClient.m; sourceTree = "<group>"; };
 		420474F818DC2B2100E88E07 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -64,7 +66,9 @@
 		42FD6C6B18DC286B000BF2B9 /* YelpTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YelpTests-Info.plist"; sourceTree = "<group>"; };
 		42FD6C6D18DC286B000BF2B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		42FD6C6F18DC286B000BF2B9 /* YelpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YelpTests.m; sourceTree = "<group>"; };
-		8436EC1AAEE1439D997D29F7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		8867791314F1DEE3CCC57630 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8B31D9F61AAD399A006C874F /* MenuClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuClient.h; sourceTree = "<group>"; };
+		8B31D9F71AAD399A006C874F /* MenuClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuClient.m; sourceTree = "<group>"; };
 		8BBD55931A7EE89600BF901D /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
 		8BBD55941A7EE89600BF901D /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
 		8BBD55971A7EEF9C00BF901D /* BusinessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessCell.h; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 			children = (
 				420474F418DC299500E88E07 /* YelpClient.h */,
 				420474F518DC299500E88E07 /* YelpClient.m */,
+				8B31D9F61AAD399A006C874F /* MenuClient.h */,
+				8B31D9F71AAD399A006C874F /* MenuClient.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -133,7 +139,7 @@
 				42FD6C6918DC286B000BF2B9 /* YelpTests */,
 				42FD6C4918DC286B000BF2B9 /* Frameworks */,
 				42FD6C4818DC286B000BF2B9 /* Products */,
-				8436EC1AAEE1439D997D29F7 /* Pods.xcconfig */,
+				7D68D3E3D7EDCA91044C7127 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,6 +206,15 @@
 				42FD6C6C18DC286B000BF2B9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7D68D3E3D7EDCA91044C7127 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8867791314F1DEE3CCC57630 /* Pods.debug.xcconfig */,
+				405C285284D4C066EEBA6511 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		8BBD55921A7EE83C00BF901D /* Models */ = {
@@ -348,7 +363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -365,6 +380,7 @@
 				420474F618DC299500E88E07 /* YelpClient.m in Sources */,
 				8BC6BDFA1A804AE5009C95C4 /* FilterViewController.m in Sources */,
 				420474FB18DC2B2100E88E07 /* MainViewController.m in Sources */,
+				8B31D9F81AAD399A006C874F /* MenuClient.m in Sources */,
 				8BBD559A1A7EEF9C00BF901D /* BusinessCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,7 +495,7 @@
 		};
 		42FD6C7418DC286B000BF2B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8436EC1AAEE1439D997D29F7 /* Pods.xcconfig */;
+			baseConfigurationReference = 8867791314F1DEE3CCC57630 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -494,7 +510,7 @@
 		};
 		42FD6C7518DC286B000BF2B9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8436EC1AAEE1439D997D29F7 /* Pods.xcconfig */;
+			baseConfigurationReference = 405C285284D4C066EEBA6511 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

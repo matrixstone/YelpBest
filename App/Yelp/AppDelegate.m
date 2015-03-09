@@ -8,12 +8,15 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "MenuClient.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    MenuClient *mc=[[MenuClient alloc]init];
+    [mc getMenu:@"test"];
     
     UINavigationController *nvc =[[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
     nvc.navigationBar.translucent=NO;
