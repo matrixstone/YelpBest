@@ -19,7 +19,8 @@ class DBClient:
 	def get(self, name):
 		# print self.collection.find_one({"name": "%s" % name})
 		print "DBClient "+name
-		return self.collection.find_one({"name": "%s" % name})
+		# print self.collection.find({name:{'$exists': 1}})
+		return self.collection.find({name:{'$exists': 1}})[0]
 
 	def put(self, content):
 		jsonData=json.loads(content)
