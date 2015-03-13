@@ -75,6 +75,7 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
     
     self.title=@"Yelp";
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterButton)];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Select" style:UIBarButtonItemStylePlain target:self action:@selector(onSelectButton)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangePreferredContentSize:)
@@ -117,6 +118,13 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 #pragma mark - Private methods
 
 -(void)onFilterButton{
+    FilterViewController *vc=[[FilterViewController alloc]init];
+    vc.delegate=self;
+    UINavigationController *nvc=[[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
+}
+
+-(void)onSelectButton{
     FilterViewController *vc=[[FilterViewController alloc]init];
     vc.delegate=self;
     UINavigationController *nvc=[[UINavigationController alloc]initWithRootViewController:vc];
