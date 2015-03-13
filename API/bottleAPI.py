@@ -1,6 +1,8 @@
 from bottle import route, run, request, response
 from DBClient import DBClient
 from bson.json_util import dumps
+import os
+
 @route('/recipes/')
 def recipes_list():
     return "LIST"
@@ -21,16 +23,18 @@ def recipe_delete( name="Mystery Recipe" ):
 @route('/recipes/<name>', method='PUT')
 def recipe_save( name="Mystery Recipe" ):
 	# curl -X PUT --data-urlencode "json=jsonSample.json" http://localhost:8080/recipes/marlowe
-	path="/Users/haibow/Documents/MATLAB/YelpBest/"
+	apiPath=os.getcwd()
+	path=apiPath+"/../"
 	jsonName = request.forms.get( "json" )
 	# print jsonName
 	filepath=path+jsonName
 	f=open(filepath, 'r')
-	content=f.readlines()[0]
-	# print content
-	content=content.replace("\'", "\"");
-	client=DBClient()
-	resultID=client.put(content)
+	for line in f:
+	    content=line.strip()
+	    # print content
+	    content=content.replace("\'", "\"");
+	    client=DBClient()
+	    resultID=client.put(content)
 	return jsonName+" "+repr(resultID)
 
 run(host='localhost', port=8080, debug=True)
