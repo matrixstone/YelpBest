@@ -38,17 +38,18 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         //success
 //        NSData *data=(NSData *)responseObject;
-        NSLog(@"success");
+//        NSLog(@"success");
         NSDictionary *result=(NSDictionary *)responseObject;
-        NSLog(@"%@", result);
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"menuJson" object:result];
+//        NSLog(@"%@", result);
+//        return result;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
         NSLog(@"Fail to access Menu API in MenuClinet.m");
     }];
     
     [operation start];
-    
+
 }
 
 
