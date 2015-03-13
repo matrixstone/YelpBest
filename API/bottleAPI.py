@@ -23,10 +23,12 @@ def recipe_save( name="Mystery Recipe" ):
 	# curl -X PUT --data-urlencode "json=jsonSample.json" http://localhost:8080/recipes/marlowe
 	path="/Users/haibow/Documents/MATLAB/YelpBest/"
 	jsonName = request.forms.get( "json" )
+	# print jsonName
 	filepath=path+jsonName
 	f=open(filepath, 'r')
 	content=f.readlines()[0]
 	# print content
+	content=content.replace("\'", "\"");
 	client=DBClient()
 	resultID=client.put(content)
 	return jsonName+" "+repr(resultID)
