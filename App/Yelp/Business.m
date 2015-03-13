@@ -7,6 +7,7 @@
 //
 
 #import "Business.h"
+#import "MenuClient.h"
 
 @implementation Business
 
@@ -25,6 +26,7 @@
         self.name = dictionary[@"name"];
         self.imageUrl = dictionary[@"image_url"];
         self.isClosed =[dictionary[@"is_closed"] integerValue];
+        self.url=[dictionary valueForKey:@"url"];
         
         self.location=[dictionary valueForKey:@"location"];
         NSArray *street =[[dictionary valueForKey:@"location"] valueForKey:@"address"][0];
@@ -47,10 +49,40 @@
 + (NSArray *)businessWithDictionaries:(NSArray *)dictionaries{
     NSMutableArray *businesses=[NSMutableArray array];
     for (NSDictionary *dictionary in dictionaries) {
-        Business *business = [[Business alloc]initWithDictionary:dictionary];
-        [businesses addObject:business];
+//        [Business existingFilter:dictionary block:^(NSNotification *note) {
+//            if ([note object] == nil) {
+//                
+//            }else{
+//                 NSLog(@"~~~~~~~~~~~~~~");
+                Business *business = [[Business alloc]initWithDictionary:dictionary];
+                [businesses addObject:business];
+//                NSLog(@"Size of inside businesses: %d", businesses.count);
+//            }
+//        }];
+        
     }
+//    NSLog(@"Size of outside businesses: %d", businesses.count);
     return businesses;
 }
+//
+//+ (void)existingFilter:(NSDictionary *)businessDic block:(void (^)(NSNotification *note))block{
+////    NSLog(@"dic: %@", );
+//    NSArray* urlArray =[businessDic[@"url"] componentsSeparatedByString:@"/"];
+//    NSString *key=[urlArray objectAtIndex: urlArray.count-1];
+//    MenuClient *mc=[[MenuClient alloc]init];
+//    [mc getMenu:key];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkExistingOrNot:) name:@"menuJson" object:nil];
+////    [[NSNotificationCenter defaultCenter] addObserverForName:@"menuJson" object:nil queue:[NSOperationQueue mainQueue] usingBlock:block];
+////    [NSNotificationCenter defaultCenter] add
+////    return true;
+//}
+//
+//+(void) checkExistingOrNot:(NSNotification *)notify{
+//    if ([notify object] == nil) {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"existingResult" object:[NSNumber numberWithBool:YES]];
+//    }else{
+//       [[NSNotificationCenter defaultCenter] postNotificationName:@"existingResult" object:[NSNumber numberWithBool:NO]];
+//    }
+//}
 
 @end

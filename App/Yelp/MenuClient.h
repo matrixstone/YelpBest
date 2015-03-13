@@ -11,5 +11,5 @@
 @interface MenuClient : NSObject
 
 -(void)getMenu:(NSString *)resturantName;
-
+-(void)updateMenu:(NSString *)resturantName with:(NSString *) dish name:(NSString *)up param:(NSString *)value;
 @end

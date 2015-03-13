@@ -45,9 +45,44 @@
 //        return result;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
-        NSLog(@"Fail to access Menu API in MenuClinet.m");
+        NSLog(@"Fail to find resturant %@", url);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"menuJson" object:nil];
     }];
+    [operation start];
+
+}
+
+-(void)updateMenu:(NSString *)resturantName with:(NSString *) dish name:(NSString *)up param:(NSString *)value{
+    NSString *restAPI=[@"http://127.0.0.1:8080/update/" stringByAppendingString:resturantName];
+    NSString *dishAPI=[[restAPI stringByAppendingString:@"/"] stringByAppendingString:dish];
+    NSString *upAPI=[[dishAPI stringByAppendingString:@"/"] stringByAppendingString:up];
+    NSString *finalAPI=[[upAPI stringByAppendingString:@"/"] stringByAppendingString:value];
     
+    finalAPI=[finalAPI stringByReplacingOccurrencesOfString: @" " withString:@"%20"];
+//    finalAPI=[finalAPI stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *aaurl=[NSURL URLWithString:finalAPI];
+    NSLog(@"final api: %@", finalAPI);
+     NSLog(@"aaaURL: %@", aaurl);
+    NSURLRequest *aarequest = [NSURLRequest requestWithURL:aaurl];
+    
+    // 2
+   
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:aarequest];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //success
+        //        NSData *data=(NSData *)responseObject;
+        //        NSLog(@"success");
+//        NSDictionary *result=(NSDictionary *)responseObject;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"menuJson" object:result];
+                NSLog(@"Update SUccess");
+        //        return result;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+        NSLog(@"Fail to update ");
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"menuJson" object:nil];
+    }];
     [operation start];
 
 }

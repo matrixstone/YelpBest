@@ -7,6 +7,7 @@
 //
 
 #import "YelpClient.h"
+#import "LocationManager.h"
 
 @implementation YelpClient
 
@@ -23,7 +24,7 @@
 - (AFHTTPRequestOperation *)searchWithTerm:(NSString *)term params:(NSDictionary *)params success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     
     // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
-    NSDictionary *parameters = @{@"term": term, @"ll" : @"37.774866,-122.394556"};
+    NSDictionary *parameters = @{@"term": @"steak", @"ll" : @"37.793765, -122.404910",  @"limit" : @"20",  @"sort" : @"1"};
     NSMutableDictionary *allParameters = [parameters mutableCopy];
     if (params) {
         [allParameters addEntriesFromDictionary:params];
