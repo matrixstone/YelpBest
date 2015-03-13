@@ -17,6 +17,8 @@
 @property (nonatomic, strong)  NSString *address;
 @property (nonatomic, strong)  NSString *categories;
 @property (nonatomic, assign)  CGFloat distance;
+@property (nonatomic, assign)  NSInteger isClosed;
+@property (nonatomic, strong)  NSDictionary *location;
 
 + (NSArray *)businessWithDictionaries:(NSArray *)dictionaries;
 

@@ -20,7 +20,7 @@ def recipe_delete( name="Mystery Recipe" ):
 
 @route('/recipes/<name>', method='PUT')
 def recipe_save( name="Mystery Recipe" ):
-	# curl -X PUT --data-urlencode "json=jsonSample.json" http://localhost:8080/recipes/marlowe-san-francisco-2URL
+	# curl -X PUT --data-urlencode "json=jsonSample.json" http://localhost:8080/recipes/marlowe
 	path="/Users/xuhe/Personal/git/YelpBest/"
 	jsonName = request.forms.get( "json" )
 	filepath=path+jsonName

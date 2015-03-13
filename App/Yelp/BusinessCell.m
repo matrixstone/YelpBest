@@ -48,7 +48,7 @@
     
 //    NSLog(@"nameLabel: %@", self.nameLabel.text);
     
-//    self.categoryLabel.text = self.business.categories;
+    self.categoryLabel.text = self.business.categories;
 }
 
 -(void)layoutSubviews{

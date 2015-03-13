@@ -24,7 +24,9 @@
 //        NSLog(@"categories: %@", self.categories);
         self.name = dictionary[@"name"];
         self.imageUrl = dictionary[@"image_url"];
+        self.isClosed =[dictionary[@"is_closed"] integerValue];
         
+        self.location=[dictionary valueForKey:@"location"];
         NSArray *street =[[dictionary valueForKey:@"location"] valueForKey:@"address"][0];
         NSString *neighborhood=[[dictionary valueForKey:@"location"] valueForKey:@"neighborhoods"][0];
         self.address=[NSString stringWithFormat:@"%@, %@", street , neighborhood];

@@ -11,6 +11,7 @@
 #import "Business.h"
 #import "BusinessCell.h"
 #import "FilterViewController.h"
+#import "DetailedViewController.h"
 
 NSString * const kYelpConsumerKey = @"45fcmgyIjxMk-J-5GeTVjQ";
 NSString * const kYelpConsumerSecret = @"qWFkA9aUJps0YSz1RMBaErlcDwY";
@@ -120,6 +121,13 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
     vc.delegate=self;
     UINavigationController *nvc=[[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    DetailedViewController *dvc=[[DetailedViewController alloc]init];
+    dvc.business=self.businesses[indexPath.row];
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
