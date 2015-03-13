@@ -31,6 +31,8 @@ def recipe_update( resturant, dish, up, value):
 @route('/recipes/<name>', method='PUT')
 def recipe_save( name="Mystery Recipe" ):
 	# curl -X PUT --data-urlencode "json=sample.json" http://10.73.212.155:8080/recipes/marlowe
+	# curl -X PUT --data-urlencode "json=cand_sf1.json" http://10.73.212.155:8080/recipes/marlowe
+
 	apiPath=os.getcwd()
 	path=apiPath+"/../Data/"
 	jsonName = request.forms.get( "json" )
