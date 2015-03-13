@@ -20,7 +20,7 @@
 -(id)init{
     self=[super init];
     if (self) {
-        self.baseAPI=@"http://127.0.0.1:8080/recipes/";
+        self.baseAPI=@"http://10.73.212.155:8080/recipes/";
     }
     return self;
 }
@@ -41,6 +41,7 @@
 //        NSLog(@"success");
         NSDictionary *result=(NSDictionary *)responseObject;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"menuJson" object:result];
+//        [[NSNotificationCenter defaultCenter]
 //        NSLog(@"%@", result);
 //        return result;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -53,7 +54,7 @@
 }
 
 -(void)updateMenu:(NSString *)resturantName with:(NSString *) dish name:(NSString *)up param:(NSString *)value{
-    NSString *restAPI=[@"http://127.0.0.1:8080/update/" stringByAppendingString:resturantName];
+    NSString *restAPI=[@"http://10.73.212.155:8080/update/" stringByAppendingString:resturantName];
     NSString *dishAPI=[[restAPI stringByAppendingString:@"/"] stringByAppendingString:dish];
     NSString *upAPI=[[dishAPI stringByAppendingString:@"/"] stringByAppendingString:up];
     NSString *finalAPI=[[upAPI stringByAppendingString:@"/"] stringByAppendingString:value];

@@ -47,35 +47,58 @@
 }
 
 + (NSArray *)businessWithDictionaries:(NSArray *)dictionaries{
-    NSMutableArray *businesses=[NSMutableArray array];
+    NSMutableArray *businesses=[[NSMutableArray alloc]init];
+    NSLog(@"%d", dictionaries.count);
     for (NSDictionary *dictionary in dictionaries) {
+         Business *business=nil;
+//        __block finished = NO;
 //        [Business existingFilter:dictionary block:^(NSNotification *note) {
+//            NSLog(@"Here is ver interesting");
 //            if ([note object] == nil) {
-//                
+//               
 //            }else{
-//                 NSLog(@"~~~~~~~~~~~~~~");
-                Business *business = [[Business alloc]initWithDictionary:dictionary];
-                [businesses addObject:business];
+//
+                 business= [[Business alloc]initWithDictionary:dictionary];
+                 NSLog(@"URL: %@", business.url);
+//                NSLog(@"inside businesses id: %@", businesses.self);
 //                NSLog(@"Size of inside businesses: %d", businesses.count);
 //            }
+//             finished = YES;
+//            
 //        }];
+//        while (!finished) {
+//            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+//              NSLog(@"waiting");
+//        }
+        [businesses addObject:business];
         
     }
+//    [NSThread sleepForTimeInterval:10.0];
+//    while(businesses.count == 0) {
+//        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+//    }
+//    NSLog(@"outside businesses id: %@", businesses.self);
+    
+        // wait 1 second for the task to finish (you are wasting time waiting here)
+       
+    
 //    NSLog(@"Size of outside businesses: %d", businesses.count);
     return businesses;
 }
 //
-//+ (void)existingFilter:(NSDictionary *)businessDic block:(void (^)(NSNotification *note))block{
-////    NSLog(@"dic: %@", );
-//    NSArray* urlArray =[businessDic[@"url"] componentsSeparatedByString:@"/"];
-//    NSString *key=[urlArray objectAtIndex: urlArray.count-1];
-//    MenuClient *mc=[[MenuClient alloc]init];
-//    [mc getMenu:key];
++ (void)existingFilter:(NSDictionary *)businessDic block:(void (^)(NSNotification *note))block{
+//    NSLog(@"dic: %@", );
+    NSArray* urlArray =[businessDic[@"url"] componentsSeparatedByString:@"/"];
+    NSString *key=[urlArray objectAtIndex: urlArray.count-1];
+    MenuClient *mc=[[MenuClient alloc]init];
+    [mc getMenu:key];
+    NSLog(@"Test for time");
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkExistingOrNot:) name:@"menuJson" object:nil];
-////    [[NSNotificationCenter defaultCenter] addObserverForName:@"menuJson" object:nil queue:[NSOperationQueue mainQueue] usingBlock:block];
-////    [NSNotificationCenter defaultCenter] add
-////    return true;
-//}
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"menuJson" object:nil queue:[NSOperationQueue currentQueue] usingBlock:block];
+    NSLog(@"Test for end");
+//    [NSNotificationCenter defaultCenter] add
+//    return true;
+}
 //
 //+(void) checkExistingOrNot:(NSNotification *)notify{
 //    if ([notify object] == nil) {

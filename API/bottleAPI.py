@@ -30,7 +30,7 @@ def recipe_update( resturant, dish, up, value):
 
 @route('/recipes/<name>', method='PUT')
 def recipe_save( name="Mystery Recipe" ):
-	# curl -X PUT --data-urlencode "json=sample.json" http://localhost:8080/recipes/marlowe
+	# curl -X PUT --data-urlencode "json=sample.json" http://10.73.212.155:8080/recipes/marlowe
 	apiPath=os.getcwd()
 	path=apiPath+"/../Data/"
 	jsonName = request.forms.get( "json" )
@@ -38,11 +38,14 @@ def recipe_save( name="Mystery Recipe" ):
 	filepath=path+jsonName
 	f=open(filepath, 'r')
 	for line in f:
-	    content=line.strip()
-	    # print content
-	    content=content.replace("\'", "\"");
-	    client=DBClient()
-	    resultID=client.put(content)
+		try:
+		    content=line.strip()
+		    print content
+		    content=content.replace("\'", "\"");
+		    client=DBClient()
+		    resultID=client.put(content)
+		except: Exception, em:
+			continue
 	return jsonName+" "+repr(resultID)
 
-run(host='localhost', port=8080, debug=True)
+run(host='10.73.212.155', port=8080, debug=True)
