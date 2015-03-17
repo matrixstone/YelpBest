@@ -12,6 +12,7 @@
 #import "BusinessCell.h"
 #import "FilterViewController.h"
 #import "DetailedViewController.h"
+#import "SelectViewController.h"
 
 NSString * const kYelpConsumerKey = @"45fcmgyIjxMk-J-5GeTVjQ";
 NSString * const kYelpConsumerSecret = @"qWFkA9aUJps0YSz1RMBaErlcDwY";
@@ -23,8 +24,10 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 @property (nonatomic, strong) YelpClient *client;
 @property (nonatomic, strong)  NSArray *businesses;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
--(void)fetchBusinessWithQuery:(NSString *)query params:(NSDictionary *)params;
+-(void)fetchBusinessWithQuery:(NSString *)query params:(NSDictionary *)params locationSelect:(NSInteger) locationIndex;
 @property (nonatomic, strong) BusinessCell *prototypeCell;
+
+@property (nonatomic, assign) NSInteger locationIndex;
 
 @end
 
@@ -44,16 +47,18 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
-        self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
         
-        [self fetchBusinessWithQuery:@"Resturants" params:nil];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:0 forKey:@"locationIndex"];
+        
         
     }
     return self;
 }
 
--(void)fetchBusinessWithQuery:(NSString *)query params:(NSDictionary *)params{
-    [self.client searchWithTerm:query params:params success:^(AFHTTPRequestOperation *operation, id response) {
+-(void)fetchBusinessWithQuery:(NSString *)query params:(NSDictionary *)params locationSelect:(NSInteger) locationIndex{
+    [self.client searchWithTerm:query params:params locationSelect:locationIndex success:^(AFHTTPRequestOperation *operation, id response) {
 //        NSLog(@"response: %@", response);
         NSArray *businessArray = response[@"businesses"];
         self.businesses = [Business businessWithDictionaries:businessArray];
@@ -69,11 +74,18 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.locationIndex=[defaults integerForKey:@"locationIndex"];
+    
+    
+    self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
+    [self fetchBusinessWithQuery:@"Resturants" params:nil locationSelect:self.locationIndex];
+    
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.rowHeight=UITableViewAutomaticDimension;
     
-    self.title=@"Yelp";
+//    self.title=@"Yelp";
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterButton)];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Select" style:UIBarButtonItemStylePlain target:self action:@selector(onSelectButton)];
     
@@ -83,6 +95,15 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"BusinessCell" bundle:nil] forCellReuseIdentifier:@"BusinessCell"];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.locationIndex=[defaults integerForKey:@"locationIndex"];
+    
+    
+    self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
+    [self fetchBusinessWithQuery:@"Resturants" params:nil locationSelect:self.locationIndex];
 }
 
 - (void)didChangePreferredContentSize:(NSNotification *)notification
@@ -109,7 +130,7 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 #pragma mark - Filter delegate methods
 
 -(void) filtersViewController:(FilterViewController *)filterViewController didChangeFilters:(NSDictionary *)filters{
-    [self fetchBusinessWithQuery:@"Resturants" params:filters];
+    [self fetchBusinessWithQuery:@"Resturants" params:filters locationSelect:self.locationIndex];
     NSLog(@"Fire new netwroking event: %@", filters);
     
 }
@@ -125,8 +146,8 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 }
 
 -(void)onSelectButton{
-    FilterViewController *vc=[[FilterViewController alloc]init];
-    vc.delegate=self;
+    SelectViewController *vc=[[SelectViewController alloc]init];
+//    vc.delegate=self;
     UINavigationController *nvc=[[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
 }
