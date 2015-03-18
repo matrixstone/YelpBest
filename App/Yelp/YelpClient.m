@@ -42,11 +42,12 @@
         parameters = @{@"term": @"steak", @"ll" : @"37.793765, -122.404910",  @"limit" : @"20",  @"sort" : @"1"};
     }else if (locationIndex == 1){
         parameters = @{@"term": @"restaurant", @"ll" : @"37.394531, -122.078344"};
-    }else if (locationIndex == 2){
-        parameters = @{@"term": @"chinese restaurant", @"ll" : @"37.323175, -122.018882"};
-    }else if (locationIndex == 3){
-        parameters = @{@"term": @"restaurant", @"ll" : @"37.792623, -122.420055"};
     }
+//    }else if (locationIndex == 2){
+//        parameters = @{@"term": @"chinese restaurant", @"ll" : @"37.323175, -122.018882"};
+//    }else if (locationIndex == 3){
+//        parameters = @{@"term": @"restaurant", @"ll" : @"37.792623, -122.420055"};
+//    }
 
 //
 //

@@ -20,6 +20,7 @@
 @property (nonatomic, assign)  NSInteger isClosed;
 @property (nonatomic, strong)  NSDictionary *location;
 @property (nonatomic, strong)  NSString *url;
+@property (nonatomic, strong)  NSString *phone;
 @property (nonatomic, assign)  BOOL isExisting;
 
 + (NSArray *)businessWithDictionaries:(NSArray *)dictionaries;

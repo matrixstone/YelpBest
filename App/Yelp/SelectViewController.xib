@@ -26,14 +26,12 @@
                         <action selector="onSaveButton:" destination="-1" eventType="touchUpInside" id="RvN-eX-YHV"/>
                     </connections>
                 </button>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" id="6zC-c5-WEb">
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="6zC-c5-WEb">
                     <rect key="frame" x="25" y="187" width="270" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
-                        <segment title="First"/>
-                        <segment title="Second"/>
-                        <segment title="Third"/>
-                        <segment title="Fourth"/>
+                        <segment title="SF"/>
+                        <segment title="MV Downtown"/>
                     </segments>
                 </segmentedControl>
             </subviews>

@@ -33,6 +33,10 @@
 		8B6849DA1AB27B2B009B9F56 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B6849D81AB27B2B009B9F56 /* up.png */; };
 		8B6849DE1AB2A716009B9F56 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6849DC1AB2A716009B9F56 /* MenuCell.m */; };
 		8B6849DF1AB2A716009B9F56 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B6849DD1AB2A716009B9F56 /* MenuCell.xib */; };
+		8B7D45361AB90A05007A38BB /* FastBreakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7D45341AB90A05007A38BB /* FastBreakViewController.m */; };
+		8B7D45371AB90A05007A38BB /* FastBreakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D45351AB90A05007A38BB /* FastBreakViewController.xib */; };
+		8B7D45391AB90B46007A38BB /* search-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D45381AB90B46007A38BB /* search-icon.png */; };
+		8B7D453B1AB90C4F007A38BB /* yahoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D453A1AB90C4F007A38BB /* yahoo.png */; };
 		8BBD55951A7EE89600BF901D /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD55941A7EE89600BF901D /* Business.m */; };
 		8BBD559A1A7EEF9C00BF901D /* BusinessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD55981A7EEF9C00BF901D /* BusinessCell.m */; };
 		8BBD559B1A7EEF9C00BF901D /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD55991A7EEF9C00BF901D /* BusinessCell.xib */; };
@@ -96,6 +100,11 @@
 		8B6849DB1AB2A716009B9F56 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
 		8B6849DC1AB2A716009B9F56 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		8B6849DD1AB2A716009B9F56 /* MenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
+		8B7D45331AB90A05007A38BB /* FastBreakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastBreakViewController.h; sourceTree = "<group>"; };
+		8B7D45341AB90A05007A38BB /* FastBreakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastBreakViewController.m; sourceTree = "<group>"; };
+		8B7D45351AB90A05007A38BB /* FastBreakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FastBreakViewController.xib; sourceTree = "<group>"; };
+		8B7D45381AB90B46007A38BB /* search-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-icon.png"; sourceTree = SOURCE_ROOT; };
+		8B7D453A1AB90C4F007A38BB /* yahoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yahoo.png; sourceTree = SOURCE_ROOT; };
 		8BBD55931A7EE89600BF901D /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
 		8BBD55941A7EE89600BF901D /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
 		8BBD55971A7EEF9C00BF901D /* BusinessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessCell.h; sourceTree = "<group>"; };
@@ -170,6 +179,9 @@
 				8B529B951AB35B43007FCDB6 /* SelectViewController.h */,
 				8B529B961AB35B43007FCDB6 /* SelectViewController.m */,
 				8B529B971AB35B43007FCDB6 /* SelectViewController.xib */,
+				8B7D45331AB90A05007A38BB /* FastBreakViewController.h */,
+				8B7D45341AB90A05007A38BB /* FastBreakViewController.m */,
+				8B7D45351AB90A05007A38BB /* FastBreakViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -300,7 +312,9 @@
 		8BE410351AB0305F00A9D46F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8B7D453A1AB90C4F007A38BB /* yahoo.png */,
 				8B6849D71AB27B2B009B9F56 /* down.png */,
+				8B7D45381AB90B46007A38BB /* search-icon.png */,
 				8B6849D81AB27B2B009B9F56 /* up.png */,
 				8BE4103E1AB0375400A9D46F /* bookmark.png */,
 				8BE4103C1AB0375100A9D46F /* check.png */,
@@ -387,6 +401,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B7D453B1AB90C4F007A38BB /* yahoo.png in Resources */,
 				8B6849DA1AB27B2B009B9F56 /* up.png in Resources */,
 				8BE4103F1AB0375400A9D46F /* bookmark.png in Resources */,
 				8B6849DF1AB2A716009B9F56 /* MenuCell.xib in Resources */,
@@ -401,7 +416,9 @@
 				8BE410391AB0316400A9D46F /* star.png in Resources */,
 				42FD6C5D18DC286B000BF2B9 /* Images.xcassets in Resources */,
 				8BC6BE001A809451009C95C4 /* SwitchCell.xib in Resources */,
+				8B7D45371AB90A05007A38BB /* FastBreakViewController.xib in Resources */,
 				8B6849D91AB27B2B009B9F56 /* down.png in Resources */,
+				8B7D45391AB90B46007A38BB /* search-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +476,7 @@
 				42FD6C5B18DC286B000BF2B9 /* AppDelegate.m in Sources */,
 				8B1F1A031AB1533B00C796E0 /* LocationManager.m in Sources */,
 				42FD6C5718DC286B000BF2B9 /* main.m in Sources */,
+				8B7D45361AB90A05007A38BB /* FastBreakViewController.m in Sources */,
 				8BE410331AB0267B00A9D46F /* DetailedViewController.m in Sources */,
 				420474F618DC299500E88E07 /* YelpClient.m in Sources */,
 				8BC6BDFA1A804AE5009C95C4 /* FilterViewController.m in Sources */,

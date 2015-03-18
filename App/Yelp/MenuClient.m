@@ -20,7 +20,8 @@
 -(id)init{
     self=[super init];
     if (self) {
-        self.baseAPI=@"http://10.73.212.155:8080/recipes/";
+//        self.baseAPI=@"http://10.73.212.155:8080/recipes/";
+        self.baseAPI=@"http://10.87.145.159:8080/recipes/";
     }
     return self;
 }
@@ -54,7 +55,7 @@
 }
 
 -(void)updateMenu:(NSString *)resturantName with:(NSString *) dish name:(NSString *)up param:(NSString *)value{
-    NSString *restAPI=[@"http://10.73.212.155:8080/update/" stringByAppendingString:resturantName];
+    NSString *restAPI=[@"http://10.87.145.159:8080/update/" stringByAppendingString:resturantName];
     NSString *dishAPI=[[restAPI stringByAppendingString:@"/"] stringByAppendingString:dish];
     NSString *upAPI=[[dishAPI stringByAppendingString:@"/"] stringByAppendingString:up];
     NSString *finalAPI=[[upAPI stringByAppendingString:@"/"] stringByAppendingString:value];

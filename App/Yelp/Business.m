@@ -32,6 +32,7 @@
         NSArray *street =[[dictionary valueForKey:@"location"] valueForKey:@"address"][0];
         NSString *neighborhood=[[dictionary valueForKey:@"location"] valueForKey:@"neighborhoods"][0];
         self.address=[NSString stringWithFormat:@"%@, %@", street , neighborhood];
+        self.phone=[dictionary valueForKey:@"display_phone"];
         
 //        
 //        self.city = [dictionary valueForKeyPath:@"location.city"];

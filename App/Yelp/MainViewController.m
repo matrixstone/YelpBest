@@ -13,6 +13,7 @@
 #import "FilterViewController.h"
 #import "DetailedViewController.h"
 #import "SelectViewController.h"
+#import "FastBreakViewController.h"
 
 NSString * const kYelpConsumerKey = @"45fcmgyIjxMk-J-5GeTVjQ";
 NSString * const kYelpConsumerSecret = @"qWFkA9aUJps0YSz1RMBaErlcDwY";
@@ -59,7 +60,7 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 
 -(void)fetchBusinessWithQuery:(NSString *)query params:(NSDictionary *)params locationSelect:(NSInteger) locationIndex{
     [self.client searchWithTerm:query params:params locationSelect:locationIndex success:^(AFHTTPRequestOperation *operation, id response) {
-//        NSLog(@"response: %@", response);
+        NSLog(@"response: %@", response);
         NSArray *businessArray = response[@"businesses"];
         self.businesses = [Business businessWithDictionaries:businessArray];
         
@@ -99,11 +100,12 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 
 -(void)viewWillAppear:(BOOL)animated{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.locationIndex=[defaults integerForKey:@"locationIndex"];
-    
-    
-    self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
-    [self fetchBusinessWithQuery:@"Resturants" params:nil locationSelect:self.locationIndex];
+    if (self.locationIndex == [defaults integerForKey:@"locationIndex"]) {
+        NSLog(@"location index is same");
+    }else{
+        self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
+        [self fetchBusinessWithQuery:@"Resturants" params:nil locationSelect:self.locationIndex];
+    }
 }
 
 - (void)didChangePreferredContentSize:(NSNotification *)notification
@@ -153,8 +155,13 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    DetailedViewController *dvc=[[DetailedViewController alloc]init];
+//    dvc.business=self.businesses[indexPath.row];
+//    [self.navigationController pushViewController:dvc animated:YES];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    DetailedViewController *dvc=[[DetailedViewController alloc]init];
+    FastBreakViewController *dvc=[[FastBreakViewController alloc]init];
     dvc.business=self.businesses[indexPath.row];
     [self.navigationController pushViewController:dvc animated:YES];
 }
