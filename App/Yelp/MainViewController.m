@@ -29,6 +29,7 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 @property (nonatomic, strong) BusinessCell *prototypeCell;
 
 @property (nonatomic, assign) NSInteger locationIndex;
+@property (nonatomic, assign) float verticalContentOffset;
 
 @end
 
@@ -52,7 +53,7 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:0 forKey:@"locationIndex"];
-        
+        self.verticalContentOffset=0.0;
         
     }
     return self;
@@ -95,17 +96,25 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
                                                  name:UIContentSizeCategoryDidChangeNotification object:nil];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"BusinessCell" bundle:nil] forCellReuseIdentifier:@"BusinessCell"];
-    
+   
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+   
+    
     if (self.locationIndex == [defaults integerForKey:@"locationIndex"]) {
-        NSLog(@"location index is same");
+//        NSLog(@"location index is same");
     }else{
         self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
         [self fetchBusinessWithQuery:@"Resturants" params:nil locationSelect:self.locationIndex];
     }
+     [self.tableView setContentOffset:CGPointMake(0, self.verticalContentOffset)];
+    NSLog(@"set vertical: %f", self.verticalContentOffset);
 }
 
 - (void)didChangePreferredContentSize:(NSNotification *)notification
@@ -124,6 +133,9 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.verticalContentOffset=self.tableView.contentOffset.y;
+    NSLog(@"vertical off set: %f", self.verticalContentOffset);
+    
     BusinessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BusinessCell"];
     cell.business = self.businesses[indexPath.row];
     return cell;

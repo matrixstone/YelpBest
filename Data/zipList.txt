@@ -1,0 +1,237 @@
+restaurant
+Sunnyvale	94085	true
+Sunnyvale	94086	true
+Sunnyvale	94087	true
+Sunnyvale	94089	true
+Mountain View	94040	true
+Mountain View	94041	true
+Mountain View	94043	true
+Palo Alto	94301	true
+Palo Alto	94306	true
+San Jose	95110	true
+San Jose	95111	true
+San Jose	95112	true
+San Jose	95116	true
+San Jose	95117	true
+San Jose	95118	true
+San Jose	95119	true
+San Jose	95120	true
+San Jose	95121	true
+San Jose	95122	true
+San Jose	95123	true
+San Jose	95124	true
+San Jose	95125	true
+San Jose	95126	true
+San Jose	95127	true
+San Jose	95128	true
+San Jose	95129	true
+San Jose	95130	true
+San Jose	95131	true
+San Jose	95132	true
+San Jose	95133	true
+San Jose	95134	true
+San Jose	95135	true
+San Jose	95136	true
+San Jose	95138	true
+San Jose	95139	true
+San Jose	95148	true
+San Martin	95046	true
+Santa Clara	95050	true
+Santa Clara	95051	true
+Santa Clara	95054	true
+Saratoga	95070	true
+San Francisco	94102	true
+San Francisco	94103	true
+San Francisco	94105	true
+San Francisco	94107	true
+San Francisco	94108	true
+San Francisco	94109	true
+San Francisco	94110	true
+San Francisco	94111	true
+San Francisco	94112	true
+San Francisco	94114	true
+San Francisco	94115	true
+San Francisco	94116	true
+San Francisco	94117	true
+San Francisco	94118	true
+San Francisco	94121	true
+San Francisco	94122	true
+San Francisco	94123	true
+San Francisco	94124	true
+San Francisco	94127	true
+San Francisco	94131	true
+San Francisco	94132	true
+San Francisco	94133	true
+San Francisco	94134	true
+Alameda	94501	true
+Alameda	94502	true
+Albany	94706	true
+Berkeley	94702	true
+Berkeley	94703	true
+Berkeley	94704	true
+Berkeley	94705	true
+Berkeley	94707	true
+Berkeley	94708	true
+Berkeley	94709	true
+Berkeley	94710	true
+Castro Valley	94546	true
+Castro Valley	94552	true
+Dublin	94568	true
+Emeryville	94608	true
+Fremont	94536	true
+Fremont	94538	true
+Fremont	94539	true
+Fremont	94555	true
+Hayward	94541	true
+Hayward	94542	true
+Hayward	94544	true
+Hayward	94545	true
+Livermore	94550	true
+Livermore	94551	true
+Newark	94560	true
+Oakland	94601	true
+Oakland	94602	true
+Oakland	94603	true
+Oakland	94605	true
+Oakland	94606	true
+Oakland	94607	true
+Oakland	94609	true
+Oakland	94610	true
+Oakland	94612	true
+Oakland	94618	true
+Oakland	94619	true
+Oakland	94621	true
+Piedmont	94611	true
+Pleasanton	94566	true
+Pleasanton	94588	true
+San Leandro	94577	true
+San Leandro	94578	true
+San Leandro	94579	true
+San Lorenzo	94580	true
+Union City	94587	true
+Alamo	94507	true
+Antioch	94509	true
+Antioch	94531	true
+Brentwood	94513	true
+Byron	94514	true
+Clayton	94517	true
+Concord	94518	true
+Concord	94519	true
+Concord	94520	true
+Concord	94521	true
+Danville	94506	true
+Danville	94526	true
+Diablo	94528	true
+El Cerrito	94530	true
+El Sobrante	94803	true
+Hercules	94547	true
+Lafayette	94549	true
+Martinez	94553	true
+Moraga	94556	true
+Oakley	94561	true
+Orinda	94563	true
+Pinole	94564	true
+Pittsburg	94565	true
+Pleasant Hill	94523	true
+Richmond	94801	true
+Richmond	94804	true
+Richmond	94805	true
+Rodeo	94572	true
+San Pablo	94806	true
+San Ramon	94582	true
+San Ramon	94583	true
+Walnut Creek	94595	true
+Walnut Creek	94596	true
+Walnut Creek	94597	true
+Walnut Creek	94598	true
+Belvedere Tiburon	94920	true
+Corte Madera	94925	true
+Fairfax	94930	true
+Greenbrae	94904	true
+Inverness	94937	true
+Larkspur	94939	true
+Mill Valley	94941	true
+Novato	94945	true
+Novato	94947	true
+Novato	94949	true
+Ross	94957	true
+San Anselmo	94960	true
+San Rafael	94901	true
+San Rafael	94903	true
+Sausalito	94965	true
+Stinson Beach	94970	true
+American Canyon	94503	true
+Calistoga	94515	true
+Napa	94558	true
+Napa	94559	true
+Saint Helena	94574	true
+Yountville	94599	true
+Atherton	94027	true
+Belmont	94002	true
+Brisbane	94005	true
+Burlingame	94010	true
+Daly City	94014	true
+Daly City	94015	true
+Half Moon Bay	94018	true
+Half Moon Bay	94019	true
+Menlo Park	94025	true
+Menlo Park	94028	true
+Millbrae	94030	true
+Montara	94037	true
+Moss Beach	94038	true
+Pacifica	94044	true
+Palo Alto	94303	true
+Redwood City	94061	true
+Redwood City	94063	true
+Redwood City	94065	true
+San Bruno	94066	true
+San Carlos	94070	true
+San Mateo	94401	true
+San Mateo	94402	true
+San Mateo	94403	true
+San Mateo	94404	true
+South San Francisco	94080	true
+Woodside	94062	true
+Campbell	95008	true
+Cupertino	95014	true
+Gilroy	95020	true
+Los Altos	94022	true
+Los Altos	94024	true
+Los Gatos	95030	true
+Los Gatos	95032	true
+Los Gatos	95033	true
+Milpitas	95035	true
+Morgan Hill	95037	true
+Benicia	94510	true
+Dixon	95620	true
+Fairfield	94533	true
+Fairfield	94534	true
+Rio Vista	94571	true
+Suisun City	94585	true
+Vacaville	95687	true
+Vacaville	95688	true
+Vallejo	94589	true
+Vallejo	94590	true
+Vallejo	94591	true
+Vallejo	94592	true
+Bodega Bay	94923	true
+Cloverdale	95425	true
+Cotati	94931	true
+Forestville	95436	true
+Glen Ellen	95442	true
+Guerneville	95446	true
+Healdsburg	95448	true
+Penngrove	94951	true
+Petaluma	94952	true
+Petaluma	94954	true
+Rohnert Park	94928	true
+Santa Rosa	95401	true
+Santa Rosa	95403	true
+Santa Rosa	95404	true
+Santa Rosa	95405	true
+Santa Rosa	95407	true
+Santa Rosa	95409	true
+Sebastopol	95472	true
+Sonoma	95476	true
+The Sea Ranch	95497	true
+Windsor	95492	true
