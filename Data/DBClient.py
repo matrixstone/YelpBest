@@ -13,7 +13,7 @@ class DBClient:
 	databaseName="TrendingYelp"
 	collectionName="TrendingYelp"
 	collection=None
-	documentID="550d13316f0ff3660bc6fab2"
+	documentID="550f7b2f18af025a3617ac0f"
 	def __init__(self, cName=collectionName):
 		client = MongoClient('localhost', 27017)
 		db = client[self.databaseName]
