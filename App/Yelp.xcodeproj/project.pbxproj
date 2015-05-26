@@ -37,9 +37,11 @@
 		8B7D45371AB90A05007A38BB /* FastBreakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D45351AB90A05007A38BB /* FastBreakViewController.xib */; };
 		8B7D45391AB90B46007A38BB /* search-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D45381AB90B46007A38BB /* search-icon.png */; };
 		8B7D453B1AB90C4F007A38BB /* yahoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D453A1AB90C4F007A38BB /* yahoo.png */; };
+		8B98F52C1AE3846B00D464F7 /* AWSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B98F52B1AE3846B00D464F7 /* AWSClient.m */; };
 		8BBD55951A7EE89600BF901D /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD55941A7EE89600BF901D /* Business.m */; };
 		8BBD559A1A7EEF9C00BF901D /* BusinessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD55981A7EEF9C00BF901D /* BusinessCell.m */; };
 		8BBD559B1A7EEF9C00BF901D /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD55991A7EEF9C00BF901D /* BusinessCell.xib */; };
+		8BC4F6ED1B0AE5AD009DD09C /* bug.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC4F6EC1B0AE5AD009DD09C /* bug.png */; };
 		8BC6BDFA1A804AE5009C95C4 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6BDF81A804AE5009C95C4 /* FilterViewController.m */; };
 		8BC6BDFB1A804AE5009C95C4 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BC6BDF91A804AE5009C95C4 /* FilterViewController.xib */; };
 		8BC6BDFF1A809451009C95C4 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6BDFD1A809451009C95C4 /* SwitchCell.m */; };
@@ -105,11 +107,14 @@
 		8B7D45351AB90A05007A38BB /* FastBreakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FastBreakViewController.xib; sourceTree = "<group>"; };
 		8B7D45381AB90B46007A38BB /* search-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-icon.png"; sourceTree = SOURCE_ROOT; };
 		8B7D453A1AB90C4F007A38BB /* yahoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yahoo.png; sourceTree = SOURCE_ROOT; };
+		8B98F52A1AE3846B00D464F7 /* AWSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSClient.h; sourceTree = "<group>"; };
+		8B98F52B1AE3846B00D464F7 /* AWSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSClient.m; sourceTree = "<group>"; };
 		8BBD55931A7EE89600BF901D /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
 		8BBD55941A7EE89600BF901D /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
 		8BBD55971A7EEF9C00BF901D /* BusinessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessCell.h; sourceTree = "<group>"; };
 		8BBD55981A7EEF9C00BF901D /* BusinessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessCell.m; sourceTree = "<group>"; };
 		8BBD55991A7EEF9C00BF901D /* BusinessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
+		8BC4F6EC1B0AE5AD009DD09C /* bug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bug.png; path = ../../bug.png; sourceTree = "<group>"; };
 		8BC6BDF71A804AE5009C95C4 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		8BC6BDF81A804AE5009C95C4 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		8BC6BDF91A804AE5009C95C4 /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
@@ -160,6 +165,8 @@
 				420474F518DC299500E88E07 /* YelpClient.m */,
 				8B31D9F61AAD399A006C874F /* MenuClient.h */,
 				8B31D9F71AAD399A006C874F /* MenuClient.m */,
+				8B98F52A1AE3846B00D464F7 /* AWSClient.h */,
+				8B98F52B1AE3846B00D464F7 /* AWSClient.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -312,6 +319,7 @@
 		8BE410351AB0305F00A9D46F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BC4F6EC1B0AE5AD009DD09C /* bug.png */,
 				8B7D453A1AB90C4F007A38BB /* yahoo.png */,
 				8B6849D71AB27B2B009B9F56 /* down.png */,
 				8B7D45381AB90B46007A38BB /* search-icon.png */,
@@ -414,6 +422,7 @@
 				8BE4103D1AB0375100A9D46F /* check.png in Resources */,
 				8B529B991AB35B43007FCDB6 /* SelectViewController.xib in Resources */,
 				8BE410391AB0316400A9D46F /* star.png in Resources */,
+				8BC4F6ED1B0AE5AD009DD09C /* bug.png in Resources */,
 				42FD6C5D18DC286B000BF2B9 /* Images.xcassets in Resources */,
 				8BC6BE001A809451009C95C4 /* SwitchCell.xib in Resources */,
 				8B7D45371AB90A05007A38BB /* FastBreakViewController.xib in Resources */,
@@ -483,6 +492,7 @@
 				8B529B981AB35B43007FCDB6 /* SelectViewController.m in Sources */,
 				420474FB18DC2B2100E88E07 /* MainViewController.m in Sources */,
 				8B31D9F81AAD399A006C874F /* MenuClient.m in Sources */,
+				8B98F52C1AE3846B00D464F7 /* AWSClient.m in Sources */,
 				8BBD559A1A7EEF9C00BF901D /* BusinessCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,7 +614,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Yelp/Yelp-Prefix.pch";
 				INFOPLIST_FILE = "Yelp/Yelp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -619,7 +629,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Yelp/Yelp-Prefix.pch";
 				INFOPLIST_FILE = "Yelp/Yelp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

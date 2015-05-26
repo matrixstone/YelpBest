@@ -14,6 +14,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "MenuClient.h"
 #import "MenuCell.h"
+#import "AWSClient.h"
 
 @interface DetailedViewController ()<UITableViewDataSource, UITableViewDelegate>
 

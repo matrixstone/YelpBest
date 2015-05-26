@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
+@property (nonatomic, strong)CLLocation* location;
+
 +(LocationManager *) instance;
 
 -(void)addLocationObserver:(id)observer block:(void (^)(NSNotification *note))block ;

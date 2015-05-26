@@ -26,7 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *address;
 
 @property (nonatomic, strong) Business *business;
-@property (nonatomic, strong) NSArray *menuArray;
+@property (nonatomic, strong) NSMutableArray *menuArray;
+@property (nonatomic, strong) NSDictionary *menuDict;
 @property (strong, nonatomic) NSString *key;
 
 -(void) setMenu:(NSNotification *)notify;

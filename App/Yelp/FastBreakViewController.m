@@ -10,6 +10,9 @@
 #import "MenuCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "MenuClient.h"
+#import "AWSClient.h"
+#import <AWSSNS/AWSSNS.h>
+//#import <AWSDynamoDB/AWSDynamoDB.h>
 
 @interface FastBreakViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -59,9 +62,16 @@
     point.coordinate=centerCoordinate;
     [self.mapView addAnnotation:point];
     
-    MenuClient *mc=[[MenuClient alloc]init];
-    [mc getMenu:self.key];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setMenu:) name:@"menuJson" object:nil];
+//    MenuClient *mc=[[MenuClient alloc]init];
+//    [mc getMenu:self.key];
+    
+    AWSClient *aclient=[[AWSClient alloc]initCredentials];
+    [aclient getBasedOnKey:self.key];
+   
+    
+//    [self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setMenu:) name:@"menuDict" object:nil];
     
 }
 
@@ -71,13 +81,53 @@
 }
 
 -(void) setMenu:(NSNotification *)notify{
-    NSDictionary *menuJson=[notify object];
-//    NSLog(@"Json: %@",menuJson);
-//    NSLog(@"Back Key: %@", self.key);
-    self.menuArray=menuJson[self.key];
-//    for (NSDictionary *eachMenu in self.menuArray) {
-////        NSLog(@"%@", eachMenu[@"down"]);
+    //Example of the menu dictionary:
+//    2015-05-25 19:13:21.705 Yelp[83265:16650917] menuDict: {
+//        RestaurantID = "chef-yu-hunan-gourmet-sunnyvale";
+//        "chow fun" = "{u'down': 0, u'review': u'4', u'name': u'chow fun', u'up': 0}";
+//        "fried rice" = "{u'down': 0, u'review': u'7', u'name': u'fried rice', u'up': 0}";
+//        "orange peel beef" = "{u'down': 0, u'review': u'4', u'name': u'orange peel beef', u'up': 0}";
+//        "pot sticker" = "{u'down': 0, u'review': u'4', u'name': u'pot sticker', u'up': 0}";
+//        "sour soup" = "{u'down': 0, u'review': u'8', u'name': u'sour soup', u'up': 0}";
+//        "spicy dishe" = "{u'down': 0, u'review': u'5', u'name': u'spicy dishe', u'up': 0}";
 //    }
+    BFTask *task=[notify object];
+    self.menuDict=task.result;
+//    NSLog(@"menuDict: %@", self.menuDict);
+    NSMutableArray *tempMenuArray=[[NSMutableArray alloc]init];
+    for (NSString *key in self.menuDict) {
+//        NSLog(@"Key: %@", key);
+        if (![key isEqualToString:@"RestaurantID"]) {
+            NSString *jsonString=[self.menuDict objectForKey:key];
+            NSString *replaceString=[[jsonString stringByReplacingOccurrencesOfString:@"u'" withString:@"'"] stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
+//            NSString *appendString=[[@"\"" stringByAppendingString:replaceString] stringByAppendingString:@"\""];
+            NSData *data = [replaceString dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            [tempMenuArray addObject:jsonDict];
+
+        }
+    }
+
+    self.menuArray = [tempMenuArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+        int reviewNum1=[[obj1 objectForKey:@"review"] intValue];
+        int reviewNum2=[[obj2 objectForKey:@"review"] intValue];
+        if (reviewNum1 < reviewNum2) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (reviewNum1 > reviewNum2) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        [self.tableView reloadData];
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
+//    NSDictionary *menuJson=[notify object];
+////    NSLog(@"Json: %@",menuJson);
+////    NSLog(@"Back Key: %@", self.key);
+//    self.menuArray=menuJson[self.key];
+////    for (NSDictionary *eachMenu in self.menuArray) {
+//////        NSLog(@"%@", eachMenu[@"down"]);
+
     [self.tableView reloadData];
     //    NSLog(@"menu: %@", menuJson);
 }
@@ -95,6 +145,7 @@
     mc.downNum.text=[NSString stringWithFormat:@"%@", self.menuArray[indexPath.row][@"down"]];
     mc.reviewNum.text=[NSString stringWithFormat:@"%@", self.menuArray[indexPath.row][@"review"]];
     mc.keyString=self.key;
+    mc.menuDict=self.menuDict;
     //    mc.resturantName=self.restName;
     //    mc.downNum.text=self.menuArray[indexPath.row][@"down"];
     //    mc.reviewNum.text=self.menuArray[indexPath.row][@"review"];

@@ -23,7 +23,23 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)clickBug:(id)sender {
+    
+}
+
 - (IBAction)clickUpButton:(id)sender {
+    NSLog(@"Dish item string: %@", self.menuDict[self.dishName.text]);
+    NSString *replaceString=[[self.menuDict[self.dishName.text] stringByReplacingOccurrencesOfString:@"u'" withString:@"'"] stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
+    //            NSString *appendString=[[@"\"" stringByAppendingString:replaceString] stringByAppendingString:@"\""];
+    NSData *data = [replaceString dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    NSLog(@"Dish item dictionary: %@", jsonDict[@"up"]);
+    NSInteger upNum=[jsonDict[@"up"] integerValue]+1;
+    NSLog(@"ID to int: %d",upNum);
+    jsonDict[@"up"]=[NSNumber numberWithInteger:upNum];
+//    jsonDict[@"up"]=jsonDict[@"up"]+1;
+    NSLog(@"Dish item dictionary: %@", jsonDict[@"up"]);
+    
     if (self.upOnce == TRUE) {
         self.upOnce=FALSE;
         [UIView animateWithDuration:1 animations:^{

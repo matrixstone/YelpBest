@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BDBOAuth1RequestOperationManager.h"
+#import "LocationManager.h"
 
 @interface YelpClient : BDBOAuth1RequestOperationManager
 
@@ -15,4 +16,5 @@
 
 - (AFHTTPRequestOperation *)searchWithTerm:(NSString *)term params:(NSDictionary *)params locationSelect:(NSInteger) locationIndex success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+-(CLLocation *)getLocation:(NSNotification *)notify;
 @end

@@ -60,7 +60,7 @@
 //            }else{
 //
                  business= [[Business alloc]initWithDictionary:dictionary];
-                 NSLog(@"URL: %@", business.url);
+//                 NSLog(@"URL: %@", business.url);
 //                NSLog(@"inside businesses id: %@", businesses.self);
 //                NSLog(@"Size of inside businesses: %d", businesses.count);
 //            }

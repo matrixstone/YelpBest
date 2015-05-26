@@ -14,6 +14,7 @@
 #import "DetailedViewController.h"
 #import "SelectViewController.h"
 #import "FastBreakViewController.h"
+#import "LocationManager.h"
 
 NSString * const kYelpConsumerKey = @"45fcmgyIjxMk-J-5GeTVjQ";
 NSString * const kYelpConsumerSecret = @"qWFkA9aUJps0YSz1RMBaErlcDwY";
@@ -61,7 +62,7 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 
 -(void)fetchBusinessWithQuery:(NSString *)query params:(NSDictionary *)params locationSelect:(NSInteger) locationIndex{
     [self.client searchWithTerm:query params:params locationSelect:locationIndex success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"response: %@", response);
+//        NSLog(@"response: %@", response);
         NSArray *businessArray = response[@"businesses"];
         self.businesses = [Business businessWithDictionaries:businessArray];
         
@@ -89,7 +90,7 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
     
 //    self.title=@"Yelp";
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterButton)];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Select" style:UIBarButtonItemStylePlain target:self action:@selector(onSelectButton)];
+//    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Select" style:UIBarButtonItemStylePlain target:self action:@selector(onSelectButton)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangePreferredContentSize:)
@@ -134,7 +135,7 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     self.verticalContentOffset=self.tableView.contentOffset.y;
-    NSLog(@"vertical off set: %f", self.verticalContentOffset);
+//    NSLog(@"vertical off set: %f", self.verticalContentOffset);
     
     BusinessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BusinessCell"];
     cell.business = self.businesses[indexPath.row];
@@ -192,4 +193,9 @@ NSString * const kYelpTokenSecret = @"5bi4id__4I8wst5mPvXCRdtGb8w";
     return UITableViewAutomaticDimension;
 }
 
+- (IBAction)clickSearch:(id)sender {
+//    NSLog(@"Text content: %@", self.searchField.text);
+    [self fetchBusinessWithQuery:self.searchField.text params:nil locationSelect:self.locationIndex];
+    [self.tableView reloadData];
+}
 @end
