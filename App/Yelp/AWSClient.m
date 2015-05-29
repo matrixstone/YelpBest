@@ -37,7 +37,7 @@
              NSLog(@"The request failed. Exception: [%@]", task.exception);
          }
          if (task.result) {
-             NSMutableDictionary *restInfo = task.result;
+//             NSMutableDictionary *restInfo = task.result;
 //log
 //             NSLog(@"Successfully load inside book: %@", restInfo);
 //             for (NSString *key in restInfo) {
@@ -53,9 +53,30 @@
 
 }
 
-//-(BFTask *) setMenuBasedOnKey:(NSString *)restKey{
-//    
-//}
+-(BFTask *) setMenuBasedOnKey:(NSDictionary *)menuDict{
+//     NSLog(@"AWS menudict writing start to run");
+//    NSLog(@"AWS menudict: %@", menuDict);
+//    NSLog(@"Restaurant ID: %@", menuDict[@"RestaurantID"]);
+    self.RestaurantID=menuDict[@"RestaurantID"];
+    
+//    AWSClient *ac=[[AWSClient alloc]init];
+    return [[self.dynamoDBObjectMapper save:self withDict:menuDict]
+            continueWithBlock:^id(BFTask *task) {
+                if (task.error) {
+                    NSLog(@"AWS error");
+                    NSLog(@"The request failed. Error: [%@]", task.error);
+                }
+                if (task.exception) {
+                    NSLog(@"AWS exception");
+                    NSLog(@"The request failed. Exception: [%@]", task.exception);
+                }
+                if (task.result) {
+                    //Do something with the result.
+//                     NSLog(@"AWS menudict writing succeed");
+                }
+                return nil;
+            }];
+}
 
 
 + (NSString *)dynamoDBTableName {

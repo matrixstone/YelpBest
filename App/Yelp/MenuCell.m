@@ -8,6 +8,7 @@
 
 #import "MenuCell.h"
 #import "MenuClient.h"
+#import "AWSClient.h"
 
 @implementation MenuCell
 
@@ -28,17 +29,27 @@
 }
 
 - (IBAction)clickUpButton:(id)sender {
-    NSLog(@"Dish item string: %@", self.menuDict[self.dishName.text]);
+//    NSLog(@"Dish item string: %@", self.menuDict[self.dishName.text]);
     NSString *replaceString=[[self.menuDict[self.dishName.text] stringByReplacingOccurrencesOfString:@"u'" withString:@"'"] stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
     //            NSString *appendString=[[@"\"" stringByAppendingString:replaceString] stringByAppendingString:@"\""];
     NSData *data = [replaceString dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"Dish item dictionary: %@", jsonDict[@"up"]);
+//    NSLog(@"Dish item dictionary: %@", jsonDict[@"up"]);
     NSInteger upNum=[jsonDict[@"up"] integerValue]+1;
-    NSLog(@"ID to int: %d",upNum);
+//    NSLog(@"ID to int: %d",upNum);
     jsonDict[@"up"]=[NSNumber numberWithInteger:upNum];
 //    jsonDict[@"up"]=jsonDict[@"up"]+1;
-    NSLog(@"Dish item dictionary: %@", jsonDict[@"up"]);
+//    NSLog(@"Dish item dictionary: %@", jsonDict[@"up"]);
+    //parameters is NSDictionary
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict
+                                                       options:0
+                                                         error:nil];
+    NSString *newString = [[NSString alloc] initWithData:jsonData
+                                             encoding:NSUTF8StringEncoding];
+    NSString *reformatedNewString=[newString stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
+//    NSString *dictAfterModified=[NSString stringWithFormat:@"%@", jsonDict];
+//    NSLog(@"After changing string: %@", reformatedNewString);
+    self.menuDict[self.dishName.text]=reformatedNewString;
     
     if (self.upOnce == TRUE) {
         self.upOnce=FALSE;
@@ -48,9 +59,11 @@
         } completion:^(BOOL finished) {
             NSInteger number=[self.upNum.text intValue];
             self.upNum.text=[NSString stringWithFormat:@"%d", number+1];
-            MenuClient *mc=[[MenuClient alloc]init];
+            AWSClient *aclient=[[AWSClient alloc]initCredentials];
+            [aclient setMenuBasedOnKey:self.menuDict];
+//          MenuClient *mc=[[MenuClient alloc]init];
+//          [mc updateMenu:self.keyString with:self.dishName.text name:@"up" param:self.upNum.text];
             
-            [mc updateMenu:self.keyString with:self.dishName.text name:@"up" param:self.upNum.text];
             
         }];
     }else{
@@ -59,6 +72,19 @@
 }
 
 - (IBAction)clickDownButton:(id)sender {
+    NSString *replaceString=[[self.menuDict[self.dishName.text] stringByReplacingOccurrencesOfString:@"u'" withString:@"'"] stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
+    NSData *data = [replaceString dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    NSInteger upNum=[jsonDict[@"down"] integerValue]+1;
+    jsonDict[@"down"]=[NSNumber numberWithInteger:upNum];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict
+                                                       options:0
+                                                         error:nil];
+    NSString *newString = [[NSString alloc] initWithData:jsonData
+                                                encoding:NSUTF8StringEncoding];
+    NSString *reformatedNewString=[newString stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
+    self.menuDict[self.dishName.text]=reformatedNewString;
+    
     if (self.downOnce == TRUE) {
         self.downOnce=FALSE;
         [UIView animateWithDuration:1 animations:^{
@@ -67,8 +93,11 @@
         } completion:^(BOOL finished) {
             NSInteger number=[self.downNum.text intValue];
             self.downNum.text=[NSString stringWithFormat:@"%d", number+1];
-            MenuClient *mc=[[MenuClient alloc]init];
-            [mc updateMenu:self.keyString with:self.dishName.text name:@"down" param:self.downNum.text];
+            AWSClient *aclient=[[AWSClient alloc]initCredentials];
+            [aclient setMenuBasedOnKey:self.menuDict];
+//            
+//            MenuClient *mc=[[MenuClient alloc]init];
+//            [mc updateMenu:self.keyString with:self.dishName.text name:@"down" param:self.downNum.text];
         }];
     }else{
         [[[UIAlertView alloc] initWithTitle:@"Click Once" message:@"Only allow click once" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

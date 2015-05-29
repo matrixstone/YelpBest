@@ -317,7 +317,7 @@ __attribute__ ((deprecated("Use 'AWSDynamoDBObjectModel' instead.")))
 
  @return BFTask.
  */
-- (BFTask *)save:(AWSDynamoDBModel *)model;
+- (BFTask *)save:(AWSDynamoDBModel *)model withDict:(NSDictionary *)menuDict ;
 
 /**
  Saves the object given into DynamoDB, using the specified configuration.
@@ -327,7 +327,7 @@ __attribute__ ((deprecated("Use 'AWSDynamoDBObjectModel' instead.")))
 
  @return BFTask.
  */
-- (BFTask *)save:(AWSDynamoDBModel *)model
+- (BFTask *)save:(AWSDynamoDBModel *)model with:(NSDictionary *)menuDict
    configuration:(AWSDynamoDBObjectMapperConfiguration *)configuration;
 
 /**

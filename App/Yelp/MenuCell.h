@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *upButton;
 @property (weak, nonatomic) IBOutlet UIButton *downButton;
 @property (strong, nonatomic) NSString *keyString;
-@property (nonatomic, strong) NSDictionary *menuDict;
+@property (nonatomic, strong) NSMutableDictionary *menuDict;
 @property (assign, nonatomic) BOOL *upOnce;
 @property (assign, nonatomic) BOOL *downOnce;
 //@property (strong, nonatomic) NSString *resturantName;

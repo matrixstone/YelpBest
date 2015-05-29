@@ -93,7 +93,7 @@
 //    }
     BFTask *task=[notify object];
     self.menuDict=task.result;
-//    NSLog(@"menuDict: %@", self.menuDict);
+//    NSLog(@"menuDict input: %@", self.menuDict);
     NSMutableArray *tempMenuArray=[[NSMutableArray alloc]init];
     for (NSString *key in self.menuDict) {
 //        NSLog(@"Key: %@", key);

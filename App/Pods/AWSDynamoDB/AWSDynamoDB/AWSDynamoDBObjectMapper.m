@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, AWSDynamoDBObjectMapperVersion) {
 
 - (NSDictionary *)itemForPutItemInputWithVersion:(AWSDynamoDBObjectMapperVersion) mapperVersion;
 
-- (NSDictionary *)itemForUpdateItemInput:(AWSDynamoDBObjectMapperSaveBehavior) behavior mapperVersion:(AWSDynamoDBObjectMapperVersion)mapperVersion;
+- (NSDictionary *)itemForUpdateItemInput:(AWSDynamoDBObjectMapperSaveBehavior) behavior mapperVersion:(AWSDynamoDBObjectMapperVersion)mapperVersion withDict:(NSDictionary *) menuDict;
 
 - (NSDictionary *)key;
 
@@ -261,24 +261,25 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-- (BFTask *)save:(AWSDynamoDBModel *)model {
-    return [self save:model
+- (BFTask *)save:(AWSDynamoDBModel *)model withDict:(NSDictionary *)menuDict {
+    return [self save:model with:menuDict
         configuration:self.configuration];
 }
 
-- (BFTask *)save:(AWSDynamoDBModel *)model
+- (BFTask *)save:(AWSDynamoDBModel *)model with:(NSDictionary *)menuDict
    configuration:(AWSDynamoDBObjectMapperConfiguration *)configuration {
     switch (configuration.saveBehavior) {
         case AWSDynamoDBObjectMapperSaveBehaviorClobber: {
-            
             AWSDynamoDBPutItemInput *putItemInput = [AWSDynamoDBPutItemInput new];
-            putItemInput.tableName = [[model class] performSelector:@selector(dynamoDBTableName)];
+//            putItemInput.tableName = [[model class] performSelector:@selector(dynamoDBTableName)];
+            putItemInput.tableName = @"RestaurantTable";
+            putItemInput.item = menuDict;
 
-            if ([model isKindOfClass:[AWSDynamoDBObjectModel class]]) {
-                putItemInput.item = [(AWSDynamoDBModel *)model itemForPutItemInputWithVersion:AWSDynamoDBObjectMapperVersion2];
-            } else  {
-                putItemInput.item = [(AWSDynamoDBModel *)model itemForPutItemInputWithVersion:AWSDynamoDBObjectMapperVersion1];
-            }
+//            if ([model isKindOfClass:[AWSDynamoDBObjectModel class]]) {
+//                putItemInput.item = [(AWSDynamoDBModel *)model itemForPutItemInputWithVersion:AWSDynamoDBObjectMapperVersion2];
+//            } else  {
+//                putItemInput.item = [(AWSDynamoDBModel *)model itemForPutItemInputWithVersion:AWSDynamoDBObjectMapperVersion1];
+//            }
 
             return [self.dynamoDB putItem:putItemInput];
             break;
@@ -286,15 +287,17 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         case AWSDynamoDBObjectMapperSaveBehaviorAppendSet:
         case AWSDynamoDBObjectMapperSaveBehaviorUpdateSkipNullAttributes:
         case AWSDynamoDBObjectMapperSaveBehaviorUpdate: {
-
             AWSDynamoDBUpdateItemInput *updateItemInput = [AWSDynamoDBUpdateItemInput new];
-            updateItemInput.tableName = [[model class] performSelector:@selector(dynamoDBTableName)];
+//            updateItemInput.tableName = [[model class] performSelector:@selector(dynamoDBTableName)];
+            updateItemInput.tableName = @"RestaurantTable";
 
             if ([model isKindOfClass:[AWSDynamoDBObjectModel class]]) {
-                updateItemInput.attributeUpdates = [(AWSDynamoDBModel *)model itemForUpdateItemInput:configuration.saveBehavior mapperVersion:AWSDynamoDBObjectMapperVersion2];
+                updateItemInput.attributeUpdates = [(AWSDynamoDBModel *)model itemForUpdateItemInput:configuration.saveBehavior mapperVersion:AWSDynamoDBObjectMapperVersion2 withDict:menuDict];
                 updateItemInput.key = [(AWSDynamoDBModel *)model key];
+//                NSLog(@"updateItemInput attributeUpdates : %@", updateItemInput.attributeUpdates);
+//                NSLog(@"updateItemInput key : %@", updateItemInput.key);
             } else {
-                updateItemInput.attributeUpdates = [(AWSDynamoDBModel *)model itemForUpdateItemInput:configuration.saveBehavior mapperVersion:AWSDynamoDBObjectMapperVersion1];
+                updateItemInput.attributeUpdates = [(AWSDynamoDBModel *)model itemForUpdateItemInput:configuration.saveBehavior mapperVersion:AWSDynamoDBObjectMapperVersion1 withDict:menuDict];
                 updateItemInput.key = [(AWSDynamoDBModel *)model key];
             }
 
@@ -517,7 +520,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     return nil;
 }
 
-- (NSDictionary *)itemForPutItemInputWithVersion:(AWSDynamoDBObjectMapperVersion) mapperVersion {
+- (NSDictionary *)itemForPutItemInputWithVersion:(AWSDynamoDBObjectMapperVersion) mapperVersion { 
     NSMutableDictionary *item = [NSMutableDictionary new];
     NSMutableArray *keyArray = [NSMutableArray arrayWithObject:[[self class] performSelector:@selector(hashKeyAttribute)]];
     if ([self respondsToSelector:@selector(rangeKeyAttribute)]) {
@@ -548,10 +551,14 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     return item;
 }
 
-- (NSDictionary *)itemForUpdateItemInput:(AWSDynamoDBObjectMapperSaveBehavior) behavior mapperVersion:(AWSDynamoDBObjectMapperVersion)mapperVersion {
+- (NSDictionary *)itemForUpdateItemInput:(AWSDynamoDBObjectMapperSaveBehavior) behavior mapperVersion:(AWSDynamoDBObjectMapperVersion)mapperVersion withDict:(NSDictionary *)menuDict{
     NSMutableDictionary *item = [NSMutableDictionary new];
-    NSArray *keyArray = [[self key] allKeys];
-    NSDictionary *dictionaryValue = [MTLJSONAdapter JSONDictionaryFromModel:self];
+//    NSArray *keyArray = [[self key] allKeys];
+//    NSDictionary *dictionaryValue = [MTLJSONAdapter JSONDictionaryFromModel:self];
+    NSDictionary *dictionaryValue = menuDict;
+    NSArray *keyArray = [NSArray arrayWithObjects:@"RestaurantID", nil];
+//    NSLog(@"array Value : %@", keyArray);
+//    NSLog(@"dictionary value: %@", dictionaryValue);
 
     for (id key in dictionaryValue) {
         if (![keyArray containsObject:key]) {
